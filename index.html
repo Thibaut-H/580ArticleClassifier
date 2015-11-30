@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+	<link href='https://fonts.googleapis.com/css?family=Pacifico'
+         rel='stylesheet' type='text/css'>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="script.js"></script>
+    <style>
+    	h2{
+    		font-family: 'Pacifico', cursive;
+    	}
+    	body{
+    		text-align: center;
+    	}
+    </style>
+	<head>
+		<title>Article Classifier</title>
+	</head>
+	<body>
+		<h2>Article Classifier</h2>
+		<form action="./cgi-bin/classifier.py" method="post">
+			<input type="text" name="urlForm" placeholder="Article URL to classify">
+			<input type="submit" value="Submit">
+		</form>
+		<br><br>
+		<h2>Augment Training Data</h2>
+		<div id="trainingDataForms"></div>
+	</body>
+</html>
