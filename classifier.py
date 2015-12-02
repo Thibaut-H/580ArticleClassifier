@@ -65,8 +65,8 @@ allProbs = nbn_prob.calc_probs(word_Counter, dictList, numUrlsList, 1)
 print "Content-type: text/html"
 print
 print "<html><body>"
-for className in allClassNames:
-	print className + '<br>'
+for name in namesList:
+	print str(numUrlsList) + '<br>'
 for i in range(0,len(namesList)):
 	print namesList[i] + ' - ' + str(allProbs[i]) +  '<br>'
 #for word in word_Counter:
