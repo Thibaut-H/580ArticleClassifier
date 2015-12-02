@@ -61,16 +61,14 @@ for className in allClassNames:
 
 allProbs = nbn_prob.calc_probs(word_Counter, dictList, numUrlsList, 1)
 
+
 print "Content-type: text/html"
 print
-print "<html>"
-print "	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>"
-print " <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>"
-print "<style>body{font-family:'Roboto',sans-serif;}"
-print "h2{font-family: 'Pacifico', cursive;margin-left: 40px}</style>"
-print "<body>"
-print "<h2>Probabilities</h2><br>"
+print "<html><body>"
+for name in namesList:
+	print str(numUrlsList) + '<br>'
 for i in range(0,len(namesList)):
-	print "<b>" + namesList[i] + "</b><ul>  " + str(allProbs[i]) + "</ul>"
-print "<br><br>Your article type is " + namesList[allProbs.index(max(allProbs))].lower()
+	print namesList[i] + ' - ' + str(allProbs[i]) +  '<br>'
+#for word in word_Counter:
+#	print ( str(word_Counter[word]) + '-' + word +"<br>")
 print "</body></html>"

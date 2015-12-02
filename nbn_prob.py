@@ -1,6 +1,9 @@
 #!/usr/bin/python2.7
 from __future__ import division
 import itertools
+import math
+import logging
+logging.basicConfig(filename='example.log',level=logging.DEBUG)
 
 def calc_pmc(mess, klass, l, d):
     # Get word count of class
@@ -15,11 +18,11 @@ def calc_pmc(mess, klass, l, d):
             t_klass[word] = 0
     
     # Calc P(message|class)
-    prob = 1
+    log_prob = 1
     for word in mess:
-        prob *= ((t_klass[word]+l)/(klass_n+l*d))**(mess[word])
+        log_prob += math.log(((t_klass[word]+l)/(klass_n+l*d))**(mess[word]))
 
-    return prob
+    return log_prob
 # END #
 
 def calc_pc(mess_n, total_mess_n, l, class_n):
@@ -44,10 +47,16 @@ def calc_probs(mess, class_list, mess_num_list, l):
         pmc_list.append(calc_pmc(mess, klass, l, len(unique_words)))
         pc_list.append(calc_pc(mess_n, total_mess_n, l, len(class_list)))
     
+    max_num = max(pmc_list)
+    for i in range(len(pmc_list)):
+        pmc_list[i] -= max_num
+        pmc_list[i] = math.exp(pmc_list[i])    
+
     # P(message)
-    pm = 0.0001
+    pm = 0
     for prob_mc, prob_c in itertools.izip(pmc_list, pc_list):
         pm += prob_mc * prob_c
+        logging.debug(prob_mc, prob_c)
 
     # P(class|message) for each class in pmc_list
     prob_cm = []
