@@ -15,17 +15,13 @@ article_Url = form.getvalue('urlForm')
 
 word_List = urlParser.getArticleWords(article_Url)
 
-#add script to parse the url of urls
-# page with links to all other articles: http://feeds.bbci.co.uk/news/rss.xml
-
 #retrieve most common words for extraction
 cwl = [] #common words list
 with open('.common_words.txt', 'r') as f:
 	for line in f:
 		cwl.append(line.rstrip('\n'))
 
-#Sort List for easy counting
-word_List.sort()
+word_List.sort() #Sort List for easy counting
 word_Counter = {}
 prev_Word = ""
 for word in word_List:
@@ -41,8 +37,7 @@ for word in cwl:
 		del word_Counter[word]
 
 #Iterate through all classification files
-#Pull name using string splitting
-dictList = [] #what
+dictList = []
 namesList = []
 numUrlsList = []
 
