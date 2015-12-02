@@ -90,6 +90,8 @@ or
 other
 our
 out
+has
+had
 over
 own
 part

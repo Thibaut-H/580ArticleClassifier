@@ -3,7 +3,7 @@ $(document).ready(function(){
 		'<form action="./cgi-bin/augmentData.py" method="post">');
 	$('#trainingDataForms form').append(
 		'<input type="text" name="tagName" placeholder="Classification"><br><br>');
-	for(var i=0;i<20;++i){
+	for(var i=0;i<10;++i){
 		$('#trainingDataForms form').append(
 			'<input type="text" name="urlForm' + i + '" placeholder="Article URL"><br>');
 	}
