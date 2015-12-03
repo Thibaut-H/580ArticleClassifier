@@ -5,6 +5,7 @@ import math
 import logging
 logging.basicConfig(filename='example.log',level=logging.DEBUG)
 
+# P(message|class)
 def calc_pmc(mess, klass, l, d):
     # Get word count of class
     klass_n = 0
@@ -23,11 +24,10 @@ def calc_pmc(mess, klass, l, d):
         log_prob += math.log(((t_klass[word]+l)/(klass_n+l*d))**(mess[word]))
 
     return log_prob
-# END #
 
+# P(class)
 def calc_pc(mess_n, total_mess_n, l, class_n):
     return (mess_n + l)/(total_mess_n + l*class_n)
-# END #
 
 def calc_probs(mess, class_list, mess_num_list, l):
     # Calc distinct number of words
@@ -47,6 +47,7 @@ def calc_probs(mess, class_list, mess_num_list, l):
         pmc_list.append(calc_pmc(mess, klass, l, len(unique_words)))
         pc_list.append(calc_pc(mess_n, total_mess_n, l, len(class_list)))
     
+    # Normalize P(message|class) log values
     max_num = max(pmc_list)
     for i in range(len(pmc_list)):
         pmc_list[i] -= max_num
@@ -64,5 +65,3 @@ def calc_probs(mess, class_list, mess_num_list, l):
         prob_cm.append((prob_mc * prob_c)/pm)
 
     return prob_cm
-
-# END #
